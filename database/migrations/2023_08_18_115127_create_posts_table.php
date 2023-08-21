@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+
 
 return new class extends Migration
 {
@@ -17,10 +19,9 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->string('body');
-            $table->foreignId('art_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            //'category_id' は 'categoriesテーブル' の 'id' を参照する外部キーです
             $table->timestamps();
+            $table->foreignId('art_id')->constrained('arts')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
         });
     }
 
