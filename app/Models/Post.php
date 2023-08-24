@@ -8,12 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    public function arts()   
+    public function art()   
     {
         return $this->belongsTo(Art::class);
     }
-    public function users()   
+    public function user()   
     {
         return $this->belongsTo(User::class);
+    }
+    
+    public function getByUser(int $limit_count = 10)
+    {
+        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }
