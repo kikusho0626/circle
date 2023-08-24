@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Art extends Model
 {
     use HasFactory;
-    public function Posts()   
+    protected $table = 'arts';
+    
+    public function Post()   
     {
         return $this->hasMany(Post::class);
     }
