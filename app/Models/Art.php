@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Art extends Model
 {
@@ -14,8 +15,13 @@ class Art extends Model
     {
         return $this->hasMany(Post::class);
     }
-    public function Art_User()   
+    public function users(): BelongsToMany
     {
-        return $this->hasMany(Art_User::class);
+        return $this->belongsToMany(User::class);
+    }
+    
+    public function getPaginateByLimit(int $limit_count = 20)
+    {
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }
