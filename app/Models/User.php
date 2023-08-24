@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -46,8 +47,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-    public function Art_User()   
+    public function arts(): BelongsToMany
     {
-        return $this->hasMany(Art_User::class);
+        return $this->belongsToMany(Art::class);
     }
 }

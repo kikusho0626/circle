@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $fillable = [
+        'title',
+        'body',
+        'art_id',
+        'user_id',
+    ];
     use HasFactory;
     public function art()   
     {

@@ -15,9 +15,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('art_user', function (Blueprint $table) {
-            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users');
-            $table->primary(['post_id', 'user_id']); 
+            $table->id();
+            $table->unsignedBigInteger('art_id')->comment('カテゴリID');
+            $table->foreign('art_id')->references('id')->on('arts')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->comment('商品ID');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('art_users');
+        Schema::dropIfExists('art_user');
     }
 };

@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Post;
+use App\Models\Art;
 use App\Models\User;
 
 class ArtUserSeeder extends Seeder
@@ -19,13 +19,13 @@ class ArtUserSeeder extends Seeder
     {
         // ユーザーと投稿のデータを用意
         $users = User::all();
-        $posts = Post::all();
+        $arts = Art::all();
 
         // art_user テーブルにデータを挿入
-        foreach ($posts as $post) {
+        foreach ($arts as $art) {
             foreach ($users as $user) {
                 DB::table('art_user')->insert([
-                    'post_id' => $post->id,
+                    'art_id' => $art->id,
                     'user_id' => $user->id,
                 ]);
             }
