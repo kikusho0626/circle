@@ -15,13 +15,20 @@ use App\Http\Controllers\ArtController;
 |
 */
 
-Route::get('/{user}', [PostController::class, 'index']);
-Route::get('/posts', [PostController::class, 'store']);
-Route::delete('/post/{post}', [PostController::class,'delete']);
+Route::get('/{user}', [PostController::class, 'mypage']);
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts/create/{art}', [PostController::class, 'create']);
+Route::delete('/posts/{post}', [PostController::class,'delete']);
 Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
 Route::put('/posts/{post}', [PostController::class, 'update']);
 
 
+
 Route::get('/', [ArtController::class, 'index']);
+Route::get('/art/create', [ArtController::class, 'create']);
+Route::post('/art', [ArtController::class, 'store']);
 Route::delete('/art/{art}', [ArtController::class,'delete']);
+Route::get('/art/{art}/edit',  [ArtController::class,'edit']);
+Route::put('/art/{art}', [ArtController::class, 'update']);
+Route::get('/art/{art}', [ArtController::class, 'show']);
 

@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Art extends Model
 {
+    protected $fillable = [
+        'name',
+        'artist',
+        'url',
+        'explain',
+    ];
     use HasFactory;
     protected $table = 'arts';
     

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100);
             $table->string('body');
+            $table->boolean('favorite');
             $table->timestamps();
             $table->foreignId('art_id')->constrained('arts')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');

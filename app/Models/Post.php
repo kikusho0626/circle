@@ -23,8 +23,9 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
     
-    public function getByUser(int $limit_count = 10)
+    public function getByUser(User $user, int $limit_count = 10)
     {
-        return $this::with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this::with('user')->where('user_id', $user->id)->orderBy('created_at', 'DESC')->paginate($limit_count);
+        //orderByを連鎖させればfavはかける
     }
 }

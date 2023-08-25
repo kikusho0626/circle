@@ -2,20 +2,20 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Circle - ユーザページ</title>
+        <title>Circle - {{$user->name}}</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>Circle - ユーザポートフォリオ</h1>
-        <a href='/'>投稿を作成（作品を選択）</a>
+        <h1>Circle - {{$user->name}}のポートフォリオ</h1>
+        <a href='/'>新しい投稿を作成（作品を選択）</a>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class=post style="margin: 40px 0;">
                     <p style="font-size: 24px;font-weight: bold;">{{ $post->title }}</p><br>
                     <a class=URL href="{{ $post->art->url }}">{{ $post->art->url }}</a>
-                    <a class=URL href="/arts/{{ $post->art->id }}">[details]</a>
-                    <p class='body'>{{ $post->body }}</p>
+                    <a class=URL href="/art/{{ $post->art->id }}">[details]</a>
+                    <p class='body'>{!! nl2br(e($post->body)) !!}</p>
                     <a href="/posts/{{$post->id}}/edit">edit</a>
                     <form action='/posts/{{$post->id}}' id="form_{{$post->id}}" method="post">
                         @csrf
